@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ListIterator;
 
 public class WishList {
 
@@ -9,6 +10,10 @@ public class WishList {
      * @return the wishList with the newly added item
      */
     public List<WishListItem> addLast(List<WishListItem> wishList, WishListItem item) {
+        ListIterator<WishListItem> iterator = wishList.listIterator(wishList.size());
+
+        iterator.add(item);
+
         return wishList;
     }
 
@@ -20,6 +25,15 @@ public class WishList {
      * @return the wishList with the newly added item
      */
     public List<WishListItem> addAtIndex(List<WishListItem> wishList, WishListItem item, int index) {
+        ListIterator<WishListItem> iterator;
+        int wishListSize = wishList.size();
+
+        if (index >= wishListSize) {
+            iterator = wishList.listIterator(wishListSize);
+        } else {
+            iterator = wishList.listIterator(index);
+        }
+
         return wishList;
     }
 
