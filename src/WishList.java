@@ -25,14 +25,15 @@ public class WishList {
      * @return the wishList with the newly added item
      */
     public List<WishListItem> addAtIndex(List<WishListItem> wishList, WishListItem item, int index) {
-        ListIterator<WishListItem> iterator;
         int wishListSize = wishList.size();
 
         if (index >= wishListSize) {
-            iterator = wishList.listIterator(wishListSize);
-        } else {
-            iterator = wishList.listIterator(index);
+            addLast(wishList, item);
+            return wishList;
         }
+
+        ListIterator<WishListItem> iterator = wishList.listIterator(index);
+        iterator.add(item);
 
         return wishList;
     }
@@ -43,6 +44,13 @@ public class WishList {
      * @return the empty wishList
      */
     public List<WishListItem> removeAll(List<WishListItem> wishList) {
+        ListIterator<WishListItem> iterator = wishList.listIterator();
+
+        while(iterator.hasNext()) {
+            iterator.next();
+            iterator.remove();
+        }
+
         return wishList;
     }
 
@@ -53,6 +61,16 @@ public class WishList {
      * @return the wishList with the removed item
      */
     public List<WishListItem> removeItem(List<WishListItem> wishList, WishListItem item) {
+        ListIterator<WishListItem> iterator = wishList.listIterator();
+
+        while (iterator.hasNext()) {
+            WishListItem currentItem = iterator.next();
+
+            if (item.equals(currentItem)) {
+                iterator.remove();
+            }
+        }
+
         return wishList;
     }
 }
